@@ -40,7 +40,7 @@ task :scrape_cities => :environment do
 
       b = Building.find_or_create_by_name(name)
 
-      b.speeds = speeds.strip!
+      b.speeds = speeds.strip
       b.city = city
 
       b.save()

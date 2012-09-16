@@ -29,28 +29,21 @@ task :scrape_cities => :environment do
   City.all.each do |city|
     url = domain + city.url
 
-    puts city.name
-
     doc = Nokogiri::HTML(open(url))
 
-    i = 0
     doc.css('#wide_table tr').each do |row|
       if city.name.include? 'Building Name'
         continue
       end
-      puts i
-      i += 1
       name = row.children[0].content
-      speeds = row.children[1].content
-      business = row.children[2].content
-      puts name
-      puts speeds
-      puts business
+      speeds = row.children[2].content
+
       b = Building.find_or_create_by_name(name)
 
-      b.speeds = speeds
+      b.speeds = speeds.strip!
       b.city = city
-      b.save
+
+      b.save()
     end
   end
 end

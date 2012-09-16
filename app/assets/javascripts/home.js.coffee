@@ -28,9 +28,12 @@ initializeMap = () ->
             title: building.name
           console.log params
           marker = new google.maps.Marker params
+          marker.speeds = building.speeds
 
           google.maps.event.addListener marker, "click", () ->
-            infowindow.setContent(this.title)
+            content = '<b>' + this.title + '</b><br>'
+            content += '<pre>' + marker.speeds + '</pre>'
+            infowindow.setContent content
             infowindow.open(map, this)
 
 $(initializeMap)

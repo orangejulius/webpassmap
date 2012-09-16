@@ -1,7 +1,9 @@
 #!/usr/bin/env rake
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+require 'json'
 require 'open-uri'
+require 'uri'
 require 'nokogiri'
 
 require File.expand_path('../config/application', __FILE__)
@@ -49,6 +51,22 @@ task :scrape_cities => :environment do
       b.speeds = speeds
       b.city = city
       b.save
+    end
+  end
+end
+
+task :geocode_buildings => :environment do
+  apiUrl = 'http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address='
+
+  Building.all.each do |building|
+    if not building.latlon
+      address = URI.escape(building.name + ', ' + building.city.name + ', CA')
+      requestUrl = apiUrl + address
+      response = open(requestUrl).read
+      parsed_json = JSON.parse response
+      location = parsed_json['results'][0]['geometry']['location']
+      building.latlon = location['lat'].to_s + ', ' + location['lng'].to_s
+      building.save
     end
   end
 end

@@ -1,4 +1,6 @@
 WPMap::Application.routes.draw do
+  resources :buildings
+
   resources :cities
 
   # The priority is based upon order of creation:

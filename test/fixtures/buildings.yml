@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  speeds: MyText
+  businessService: false
+  city: 
+
+two:
+  name: MyString
+  speeds: MyText
+  businessService: false
+  city: 

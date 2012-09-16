@@ -31,7 +31,8 @@ initializeMap = () ->
 
           google.maps.event.addListener marker, "click", () ->
             content = '<b>' + this.title + '</b><br>'
-            content += '<pre>' + marker.speeds + '</pre>'
+            if this.speeds
+              content += '<pre>' + this.speeds + '</pre>'
             infowindow.setContent content
             infowindow.open map, this
 

@@ -1,5 +1,10 @@
 <h1>Webpass Map</h1>
 <p>A map of all <a href="http://webpass.net">Webpass</a> enabled buildings</p>
 
+<script>
+var cities = <%= raw City.all.to_json %>
+var buildings = <%= raw Building.all.to_json %>
+</script>
+
 
 <div id="map"></div>

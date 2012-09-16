@@ -64,9 +64,14 @@ task :geocode_buildings => :environment do
       requestUrl = apiUrl + address
       response = open(requestUrl).read
       parsed_json = JSON.parse response
-      location = parsed_json['results'][0]['geometry']['location']
-      building.latlon = location['lat'].to_s + ', ' + location['lng'].to_s
-      building.save
+      if parsed_json['results'].length > 0
+        location = parsed_json['results'][0]['geometry']['location']
+        building.latlon = location['lat'].to_s + ', ' + location['lng'].to_s
+        building.save
+      else
+        puts parsed_json['status']
+        break
+      end
     end
   end
 end

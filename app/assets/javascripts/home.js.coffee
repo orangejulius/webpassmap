@@ -1,3 +1,17 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+map = null
+
+initializeMap = () ->
+  canvas = $('#map')
+
+  if canvas.length
+    geocoder = new google.maps.Geocoder()
+
+    geocoder.geocode address: 'San Francisco, CA', (results, status) ->
+      mapOptions =
+        zoom: 12
+        center: results[0].geometry.location
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+
+      map = new google.maps.Map canvas.get(0), mapOptions
+
+$(initializeMap)

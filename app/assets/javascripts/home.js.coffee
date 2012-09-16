@@ -16,6 +16,7 @@ initializeMap = () ->
       map = new google.maps.Map canvas.get(0), mapOptions
 
       #geocode each address and add to the map
+      infowindow = new google.maps.InfoWindow
       for building in buildings
         if building.latlon
           latlon = building.latlon.split(', ')
@@ -27,5 +28,9 @@ initializeMap = () ->
             title: building.name
           console.log params
           marker = new google.maps.Marker params
+
+          google.maps.event.addListener marker, "click", () ->
+            infowindow.setContent(this.title)
+            infowindow.open(map, this)
 
 $(initializeMap)

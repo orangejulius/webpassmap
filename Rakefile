@@ -51,6 +51,7 @@ end
 task :geocode_buildings => :environment do
   apiUrl = 'http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address='
 
+  parsed = 0
   Building.all.each do |building|
     if not building.latlon
       address = URI.escape(building.name + ', ' + building.city.name + ', CA')
@@ -61,10 +62,12 @@ task :geocode_buildings => :environment do
         location = parsed_json['results'][0]['geometry']['location']
         building.latlon = location['lat'].to_s + ', ' + location['lng'].to_s
         building.save
+        parsed = parsed + 1
       else
-        puts parsed_json['status']
+        puts "Geocoding building failed with '" + parsed_json['status'] + "'"
         break
       end
     end
   end
+  puts "Geocoded " + parsed.to_s + " buildings"
 end

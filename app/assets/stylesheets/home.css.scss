@@ -6,3 +6,14 @@ body { height: 100%; margin: 0; padding: 0 }
 ul.legend li {
   list-style: none;
 }
+
+ul.footer {
+  position: absolute;
+  bottom: 0;
+}
+
+ul.footer li {
+  list-style: none;
+  display: inline-block;
+  padding: 20px;
+}

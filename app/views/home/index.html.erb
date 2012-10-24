@@ -1,16 +1,18 @@
-<h1>Webpass Map</h1>
-<p>A map of all <a href="http://webpass.net">Webpass</a> enabled buildings</p>
+<div id="sidebar">
+  <h1>Webpass Map</h1>
+  <p>A map of all <a href="http://webpass.net">Webpass</a> enabled buildings</p>
 
-<script>
-var cities = <%= raw City.all.to_json %>
-var buildings = <%= raw Building.all.to_json %>
-</script>
+  <script>
+  var cities = <%= raw City.all.to_json %>
+  var buildings = <%= raw Building.all.to_json %>
+  </script>
 
-<h2>Legend</h2>
-<ul class="legend">
-  <li><img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569">45 or 100 Mbps service</li>
-  <li><img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|34BA46">200 Mbps service</li>
-  <li><img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF87">Commercial service only</li>
-</ul>
+  <h2>Legend</h2>
+  <ul class="legend">
+    <li><img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569">45 or 100 Mbps service</li>
+    <li><img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|34BA46">200 Mbps service</li>
+    <li><img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF87">Commercial service only</li>
+  </ul>
+</div>
 
 <div id="map"></div>

@@ -1,6 +1,7 @@
 html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
-#map { height: 100% }
+#sidebar {height: 100%; width: 20%; float: left; }
+#map { height: 100%; width: 80%; float: right; }
 
 ul.legend li {
   list-style: none;

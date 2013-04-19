@@ -25,3 +25,5 @@ gem 'jquery-rails'
 
 gem 'nokogiri'
 gem 'protected_attributes'
+
+gem 'geocoder'

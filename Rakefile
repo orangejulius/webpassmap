@@ -8,6 +8,8 @@ require 'nokogiri'
 
 require File.expand_path('../config/application', __FILE__)
 
+Geocoder.configure(:always_raise => :all)
+
 WPMap::Application.load_tasks
 
 task :scrape_initial_url => :environment do
@@ -43,31 +45,27 @@ task :scrape_cities => :environment do
       b.speeds = speeds.strip
       b.city = city
 
-      b.save()
+      b.save
     end
   end
 end
 
 task :geocode_buildings => :environment do
-  apiUrl = 'http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address='
-
   parsed = 0
   Building.all.each do |building|
     if not building.latlon
-      address = URI.escape(building.name + ', ' + building.city.name + ', CA')
-      requestUrl = apiUrl + address
-      response = open(requestUrl).read
-      parsed_json = JSON.parse response
-      if parsed_json['results'].length > 0
-        location = parsed_json['results'][0]['geometry']['location']
-        building.latlon = location['lat'].to_s + ', ' + location['lng'].to_s
+      address = building.name + ', ' + building.city.name + ', CA'
+			results = Geocoder.search(address)
+      if results.length > 0
+        location = results[0].geometry['location']
+        building.latlon = "#{location['lat']}, #{location['lng']}"
         building.save
         parsed = parsed + 1
       else
-        puts "Geocoding building failed with '" + parsed_json['status'] + "'"
+        puts "Geocoding building failed with #{results}"
         break
       end
     end
   end
-  puts "Geocoded " + parsed.to_s + " buildings"
+  puts "Geocoded #{parsed} buildings"
 end

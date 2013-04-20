@@ -41,8 +41,7 @@ end
 task :geocode_buildings => :environment do
   parsed = 0
   Building.ungeocoded.each do |building|
-    address = building.name + ', ' + building.city.name + ', CA'
-    results = Geocoder.search(address)
+    results = Geocoder.search(building.address)
     if results.length > 0
       location = results[0].geometry['location']
       building.latlon = "#{location['lat']}, #{location['lng']}"

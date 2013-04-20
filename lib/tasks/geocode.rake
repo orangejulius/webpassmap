@@ -8,9 +8,9 @@ task :scrape_initial_url => :environment do
   doc = Nokogiri::HTML(open(initialUrl))
 
   doc.css('#nav_tabs li a').each do |link|
-      c = City.find_or_create_by_name(link.content)
-      c.url = link.attributes['href'].to_s
-      c.save
+    c = City.find_or_create_by_name(link.content)
+    c.url = link.attributes['href'].to_s
+    c.save
   end
 end
 

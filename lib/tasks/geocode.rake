@@ -1,3 +1,4 @@
+require 'open-uri'
 Geocoder.configure(:always_raise => :all)
 
 task :scrape_initial_url => :environment do

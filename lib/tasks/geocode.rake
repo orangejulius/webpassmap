@@ -23,9 +23,6 @@ task :scrape_cities => :environment do
     doc = Nokogiri::HTML(open(url))
 
     doc.css('#wide_table tr').each do |row|
-      if city.name.include? 'Building Name'
-        continue
-      end
       name = row.children[0].content
       speeds = row.children[2].content
 

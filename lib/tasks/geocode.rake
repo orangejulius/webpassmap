@@ -38,17 +38,22 @@ end
 
 task :geocode_buildings => :environment do
   parsed = 0
-  Building.ungeocoded.each do |building|
-    results = Geocoder.search(building.address)
-    if results.length > 0
-      location = results[0].geometry['location']
-      building.latlon = "#{location['lat']}, #{location['lng']}"
-      building.save
-      parsed = parsed + 1
-    else
-      puts "Geocoding building failed with #{results}"
-      break
-    end
-  end
-  puts "Geocoded #{parsed} buildings"
+	Building.ungeocoded.each do |building|
+		begin
+			results = Geocoder.search(building.address)
+		rescue
+			break
+		else
+			if results.length > 0
+				location = results[0].geometry['location']
+				building.latlon = "#{location['lat']}, #{location['lng']}"
+				building.save
+				parsed = parsed + 1
+			else
+				puts "Geocoding #{building.address} failed with #{results}"
+				break
+			end
+		end
+	end
+	puts "Geocoded #{parsed} buildings"
 end

@@ -1,11 +1,12 @@
 require 'open-uri'
 Geocoder.configure(:always_raise => :all)
 
+DOMAIN = 'http://webpass.net/'
+
 task :scrape_initial_url => :environment do
-  domain = 'http://webpass.net/'
   initialPath = 'buildings'
 
-  initialUrl = domain + initialPath
+  initialUrl = DOMAIN + initialPath
   doc = Nokogiri::HTML(open(initialUrl))
 
   doc.css('#nav_tabs li a').each do |link|
@@ -16,9 +17,8 @@ task :scrape_initial_url => :environment do
 end
 
 task :scrape_cities => :environment do
-  domain = 'http://webpass.net/'
   City.all.each do |city|
-    url = domain + city.url
+    url = DOMAIN + city.url
 
     doc = Nokogiri::HTML(open(url))
 

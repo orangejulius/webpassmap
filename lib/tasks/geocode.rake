@@ -1,10 +1,10 @@
 require 'open-uri'
-Geocoder.configure(:always_raise => :all)
+Geocoder.configure(always_raise: :all)
 
 DOMAIN = 'http://webpass.net/'
 
 desc "1.) Scrape Webpass for cities"
-task :scrape_initial_url => :environment do
+task scrape_initial_url: :environment do
   initialPath = 'buildings'
 
   initialUrl = DOMAIN + initialPath
@@ -18,7 +18,7 @@ task :scrape_initial_url => :environment do
 end
 
 desc "2.) Scrape cities for buildings"
-task :scrape_cities => :environment do
+task scrape_cities: :environment do
   City.all.each do |city|
     url = DOMAIN + city.url
 
@@ -39,7 +39,7 @@ task :scrape_cities => :environment do
 end
 
 desc "3.) From addresses, find lat/long for buildings"
-task :geocode_buildings => :environment do
+task geocode_buildings: :environment do
   parsed = 0
 	Building.ungeocoded.each do |building|
 		begin

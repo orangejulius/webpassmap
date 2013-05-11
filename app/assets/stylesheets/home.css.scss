@@ -9,9 +9,11 @@ body { height: 100%; margin: 0; padding: 0 }
 	width: 20%;
 	padding: 2%;
 	margin: 2%;
-	background-color: #C9C9C9;
-	opacity: 0.8;
+	background-color: #EEE;
+	opacity: 0.95;
 	border-radius: 3%;
+	border: 1px #666 solid;
+	box-shadow: 2px 2px 2px #999;
 	z-index: 1138;
 }
 

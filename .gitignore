@@ -17,3 +17,6 @@
 #vim
 *.un~
 *.swp
+
+# ignore foreman .env
+.env

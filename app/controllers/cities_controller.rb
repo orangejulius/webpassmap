@@ -40,7 +40,7 @@ class CitiesController < ApplicationController
   # POST /cities
   # POST /cities.json
   def create
-    @city = City.new(params[:city])
+    @city = City.new(city_params)
 
     respond_to do |format|
       if @city.save
@@ -59,7 +59,7 @@ class CitiesController < ApplicationController
     @city = City.find(params[:id])
 
     respond_to do |format|
-      if @city.update_attributes(params[:city])
+      if @city.update_attributes(city_params)
         format.html { redirect_to @city, notice: 'City was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +79,11 @@ class CitiesController < ApplicationController
       format.html { redirect_to cities_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def city_params
+    params.require(:city).permit(:name)
   end
 end

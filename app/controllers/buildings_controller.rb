@@ -40,7 +40,7 @@ class BuildingsController < ApplicationController
   # POST /buildings
   # POST /buildings.json
   def create
-    @building = Building.new(params[:building])
+    @building = Building.new(building_params)
 
     respond_to do |format|
       if @building.save
@@ -59,7 +59,7 @@ class BuildingsController < ApplicationController
     @building = Building.find(params[:id])
 
     respond_to do |format|
-      if @building.update_attributes(params[:building])
+      if @building.update_attributes(building_params)
         format.html { redirect_to @building, notice: 'Building was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +79,11 @@ class BuildingsController < ApplicationController
       format.html { redirect_to buildings_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def building_params
+    params.require(:building).permit(:businessService, :name, :speeds)
   end
 end

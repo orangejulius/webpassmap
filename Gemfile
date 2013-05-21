@@ -33,3 +33,5 @@ gem 'jquery-rails'
 gem 'nokogiri'
 
 gem 'geocoder'
+
+gem 'dotenv-rails', :groups => [:development, :test]

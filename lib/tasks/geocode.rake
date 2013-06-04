@@ -11,7 +11,7 @@ task scrape_initial_url: :environment do
   doc = Nokogiri::HTML(open(initialUrl))
 
   doc.css('#nav_tabs li a').each do |link|
-    c = City.find_or_create_by_name(link.content)
+    c = City.where(name: link.content).first_or_create
     c.url = link.attributes['href'].to_s
     c.save
   end
@@ -28,7 +28,7 @@ task scrape_cities: :environment do
       name = row.children[0].content
       speeds = row.children[2].content
 
-      b = Building.find_or_create_by_name(name)
+      b = Building.where(name: name).first_or_create
 
       b.speeds = speeds.strip
       b.city = city

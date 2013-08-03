@@ -28,6 +28,8 @@ end
 
 gem 'unicorn'
 
+gem 'capistrano'
+
 gem 'jquery-rails'
 
 gem 'nokogiri'

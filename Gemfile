@@ -29,6 +29,7 @@ end
 gem 'unicorn'
 
 gem 'capistrano'
+gem 'rvm-capistrano'
 
 gem 'jquery-rails'
 

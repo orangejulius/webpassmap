@@ -28,8 +28,10 @@ end
 
 gem 'unicorn'
 
-gem 'capistrano'
-gem 'rvm-capistrano'
+group :development do
+  gem 'capistrano', require: false
+  gem 'rvm-capistrano', require: false
+end
 
 gem 'jquery-rails'
 

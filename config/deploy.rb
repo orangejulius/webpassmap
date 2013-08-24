@@ -12,3 +12,5 @@ role :db,  "juliansimioni.com"
 set :user, 'webpassmap'
 set :deploy_to, '/home/webpassmap'
 set :use_sudo, false
+
+after 'deploy:restart', 'unicorn:restart'  # app preloaded

@@ -27,7 +27,7 @@ namespace :webpassmap do
 
       doc.css('#wide_table tr').each do |row|
         name = row.element_children[0].content
-        speeds = row.element_children[2].content
+        speeds = row.element_children[1].content
 
         b = Building.where(name: name).first_or_create
 

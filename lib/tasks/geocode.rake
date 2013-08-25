@@ -26,8 +26,8 @@ namespace :webpassmap do
       doc = Nokogiri::HTML(open(url))
 
       doc.css('#wide_table tr').each do |row|
-        name = row.children[0].content
-        speeds = row.children[2].content
+        name = row.element_children[0].content
+        speeds = row.element_children[2].content
 
         b = Building.where(name: name).first_or_create
 

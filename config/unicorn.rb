@@ -19,3 +19,6 @@ rails_env = ENV['RAILS_ENV'] || 'production'
 # Log everything to one file
 stderr_path "log/unicorn.log"
 stdout_path "log/unicorn.log"
+
+# put the pid where capistrano expects it
+pid "#{app_path}/tmp/pids/unicorn.pid"

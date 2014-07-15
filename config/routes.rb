@@ -1,10 +1,4 @@
 WPMap::Application.routes.draw do
-  get "home/index"
-
-  resources :buildings
-
-  resources :cities
-
   root :to => "home#index"
 
   # The priority is based upon order of creation:

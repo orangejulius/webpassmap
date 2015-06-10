@@ -26,7 +26,7 @@ initializeMap = () ->
         yellow: 'FFFF87'
 
       #url for the map pin with no color set
-      chartUrlPrefix = "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|"
+      chartUrlPrefix = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|"
 
       #size and posiition settings for the map pins
       size = new google.maps.Size 21, 34

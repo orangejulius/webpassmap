@@ -26,7 +26,7 @@ initializeMap = () ->
         yellow: 'FFFF87'
 
       #url for the map pin with no color set
-      chartUrlPrefix = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|"
+      chartUrlPrefix = "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|"
 
       #size and posiition settings for the map pins
       size = new google.maps.Size 21, 34
@@ -38,8 +38,8 @@ initializeMap = () ->
       pins[color] = new google.maps.MarkerImage chartUrlPrefix+hex, size, startPoint, endPoint for color, hex of pinColors
 
       #generate one MarkerImage for the pin shadow
-      shadowUrl = 'http://chart.apis.google.com/chart?chst=d_map_pin_shadow'
-      pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+      shadowUrl = 'https://chart.apis.google.com/chart?chst=d_map_pin_shadow'
+      pinShadow = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_shadow",
         new google.maps.Size(40, 37),
         new google.maps.Point(0, 0),
         new google.maps.Point(12, 35))
